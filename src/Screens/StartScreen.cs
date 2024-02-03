@@ -9,26 +9,22 @@ namespace LabFour.Screens;
 
 public class StartScreen : GameScreenBase
 {
-    private Texture2D _superMarioLogoTexture;
-    private Vector2 _superMarioLogoVector;
-    private BlinkingText _tapToStart;
+    private Texture2D _logoTexture;
+    private BlinkingText _pressToStart;
     private Song _song;
 
     public StartScreen(SuperMario game)
-        : base(game)
-    {
-        _superMarioLogoVector = new Vector2(400, 200);
-    }
+        : base(game) { }
 
     public override void LoadContent()
     {
         _song = SuperMarioGame.Content.Load<Song>("sounds/supermario_music");
 
-        _superMarioLogoTexture = SuperMarioGame.Content.Load<Texture2D>("sprites/supermario");
+        _logoTexture = SuperMarioGame.Content.Load<Texture2D>("sprites/supermario");
 
         SpriteFont font = SuperMarioGame.Content.Load<SpriteFont>("Fonts/Press Start 2P");
 
-        _tapToStart = new BlinkingText(font, "Press Start", TimeSpan.FromSeconds(0.5));
+        _pressToStart = new BlinkingText(font, "<Press Space to start>", TimeSpan.FromSeconds(0.5));
 
         MediaPlayer.Volume -= 0.95f;
         MediaPlayer.Play(_song);
@@ -39,7 +35,7 @@ public class StartScreen : GameScreenBase
     {
         KeyboardState keyboard = Keyboard.GetState();
 
-        _tapToStart.Update(gameTime);
+        _pressToStart.Update(gameTime);
 
         if (keyboard.IsKeyDown(Keys.Space))
         {
@@ -50,11 +46,18 @@ public class StartScreen : GameScreenBase
 
     public override void Draw(SpriteBatch spriteBatch)
     {
+        Vector2 screenDimensions = new(SuperMarioGame.screenX, SuperMarioGame.screenY + 200);
+
+        Vector2 logoCenter =
+            new(
+                (SuperMarioGame.screenX - _logoTexture.Width) / 2,
+                (SuperMarioGame.screenY - 300) / 2
+            );
+
         spriteBatch.Begin();
 
-        spriteBatch.Draw(_superMarioLogoTexture, _superMarioLogoVector, Color.White);
-
-        _tapToStart.Draw(spriteBatch, new Vector2(100, 100), Color.White);
+        spriteBatch.Draw(_logoTexture, logoCenter, Color.White);
+        _pressToStart.Draw(spriteBatch, screenDimensions, Color.White);
 
         spriteBatch.End();
     }

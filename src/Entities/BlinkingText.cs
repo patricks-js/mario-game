@@ -30,8 +30,15 @@ public class BlinkingText
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color)
+    public void Draw(SpriteBatch spriteBatch, Vector2 dimensions, Color color)
     {
+        var fontSize = font.MeasureString(text);
+
+        var position = new Vector2(
+            (dimensions.X - fontSize.X) / 2,
+            (dimensions.Y - fontSize.Y) / 2
+        );
+
         if (isVisible)
         {
             spriteBatch.DrawString(font, text, position, color);

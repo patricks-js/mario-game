@@ -22,17 +22,7 @@ public class Map : IEntities
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(
-            texture,
-            new Vector2(-cameraPosition.X, 0),
-            null,
-            Color.White,
-            0f,
-            Vector2.Zero,
-            2.0f,
-            SpriteEffects.None,
-            0f
-        );
+        spriteBatch.Draw(texture, new Vector2(-cameraPosition.X, 0), Color.White);
     }
 
     public void Update(GameTime gameTime) { }

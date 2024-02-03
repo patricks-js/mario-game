@@ -8,7 +8,6 @@ namespace LabFour.Entities;
 public class Mario : IEntities
 {
     private const int FPS = 20;
-
     private readonly Texture2D _texture;
     public Vector2 _position;
 

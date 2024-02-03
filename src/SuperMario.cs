@@ -10,10 +10,11 @@ public class SuperMario : Game
     private GameScreenBase _currentScreen;
     private readonly GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    public readonly int screenX;
+    public readonly int screenY;
 
     public SuperMario()
     {
-        // * Game settings (screen, title, etc)
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
@@ -21,12 +22,14 @@ public class SuperMario : Game
         _graphics.PreferredBackBufferWidth = 800;
         _graphics.PreferredBackBufferHeight = 480;
 
+        screenX = _graphics.PreferredBackBufferWidth;
+        screenY = _graphics.PreferredBackBufferHeight;
+
         _graphics.ApplyChanges();
     }
 
     protected override void Initialize()
     {
-        // * Elements of your game
         _currentScreen = new StartScreen(this);
 
         base.Initialize();
@@ -63,7 +66,7 @@ public class SuperMario : Game
 
     public void ChangeScreen(GameScreenBase newScreen)
     {
-        // Cleaner or transitions
+        // Cleaner or transitions, if necessary
         // ...
 
         // Load new content

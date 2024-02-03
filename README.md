@@ -4,10 +4,10 @@ Mario game built with C# and MonoGame
 
 ## To-do
 
-- [ ] Start Screen
-    - [ ] Super Mario Logo
-    - [ ] Start message
+- [x] Start Screen
+    - [x] Super Mario Logo
+    - [x] Start message
 - [ ] Game Screen
-- [ ] Map
-- [ ] Mario
-- [ ] Moving
+    - [ ] Map
+    - [ ] Mario
+    - [ ] Moving
